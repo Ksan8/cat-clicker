@@ -15,6 +15,14 @@ h1 {
   border: 3px solid gray;
 }
 
+main {
+
+}
+
+.list-box {
+  float: left;
+}
+
 .cat-box {
   width: 60%;
   margin: 36px auto 20px auto;
