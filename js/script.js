@@ -1,10 +1,18 @@
 var k1 = document.getElementById('kitten1');
 k1.count = 0;
+k1.clicks = document.getElementById('count1');
 k1.name = "Sylvie";
+
+var name1 = document.getElementById('name1');
+name1.innerHTML = "This is " + k1.name;
 
 var k2 = document.getElementById('kitten2');
 k2.count = 0;
+k2.clicks = document.getElementById('count2');
 k2.name = "Maurice";
+
+var name2 = document.getElementById('name2');
+name2.innerHTML = "This is " + k2.name;
 
 var allKittens = document.getElementsByClassName("kitten");
 var kittenCount = allKittens.length;
@@ -33,9 +41,11 @@ function countClicks () {
   //the element has been clicked... do stuff here
   // "use strict";
   this.count += 1;
-  var clickCount = this.count;
+  // var clickCount = this.count;
   console.log("Click count:", this.count);
-  return clickCount;
+  // return clickCount;
+  this.clicks.innerHTML = "Clicks: " + this.count;
+
 }
 
 k1.addEventListener('click', countClicks, false);
