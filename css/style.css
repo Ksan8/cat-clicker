@@ -1,0 +1,21 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  width: 60%;
+  margin: 20px auto;
+  text-align: center;
+  border: 3px solid gray;
+}
+
+img {
+  max-width: 600px;
+  display: block;
+  margin: auto;
+}
