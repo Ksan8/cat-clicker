@@ -3,8 +3,9 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 800px;
 }
 
 h1 {
@@ -14,8 +15,17 @@ h1 {
   border: 3px solid gray;
 }
 
-img {
-  max-width: 600px;
+.cat-box {
+  width: 60%;
+  margin: 36px auto 20px auto;
+}
+
+h3 {
+  text-align: center;
+}
+
+.kitten {
+  max-width: 100%;
   display: block;
   margin: auto;
 }
