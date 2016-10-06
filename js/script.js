@@ -22,6 +22,7 @@ var catPhotos = [
   "img/kitten-9-med.jpg"
 ];
 
+// basic kitten object
 var Kitten = function(catNum) {
   var arrayNum = catNum - 1;
   // number the kitten
@@ -36,31 +37,7 @@ var Kitten = function(catNum) {
   console.log(this.photo);
   // add counter as property (hidden)
   this.count = 0;
-
-  // // add kitten's name to list
-  // listKitten(this.num, this.name, this.photo);
-
 };
-
-// function listKitten (num, name, photo) {
-//   // create list item
-//   var newItem = document.createElement("li");
-//   newItem.classList.add("kitty-link");
-//   // make it a link
-//   var newLink = document.createElement("a");
-//   var newLinkText = document.createTextNode(name);
-//   newLink.setAttribute('href', "#");
-//   newLink.setAttribute('alt', "another cute kitten");
-//   newLink.appendChild(newLinkText);
-//   newItem.appendChild(newLink);
-//
-//   // add to cat list
-//   var list = document.getElementById("kitty-list");
-//   list.appendChild(newItem);
-//
-//   // add click functionality
-//   newLink.addEventListener('click', showKitten(name, photo), false);
-// }
 
 // instantiate all kitten objects
 var kittenOne = new Kitten(1);
@@ -99,6 +76,9 @@ function listKittens () {
   }
 }
 
+// counter for clicks on main image
+var counter = 0;
+
 // change main photo & info when a cat name is clicked
 function clickListener () {
     var catList = document.getElementsByClassName("kitty-link");
@@ -123,51 +103,33 @@ function clickListener () {
 listKittens();
 clickListener();
 
+// show the selected kitten & its info
 function showKitten (name, img) {
   // change cat name
-  var catName = document.getElementById("name1");
   catName.innerHTML = "This is " + name;
   // change cat photo to selected kitten
-  var catImg = document.getElementById("kitten1");
   console.log("Photo: ", img);
-  // var imgString = '<img id="kitten1" class="kitten" src=' + this.photo + ' alt="cute kitten">';
   catImg.src = img;
   console.log(catImg.src);
 
-  // TODO: make cat clicks countable
-  
-  // catDiv.count = 0;
-  // count number of clicks on image
-  // catDiv.addEventListener('click', countClicks, false);
-  // var clicks = document.getElementById('count1');
-  // clicks.textContent = 'Clicks:' + catDiv.count;
+  clicks = document.getElementById('count1');
+
+  // reset counter to zero for this kitten
+  counter = 0;
+  clicks.textContent = 'Clicks: ' + counter;
 }
+
+// count number of clicks on image
+var catName = document.getElementById("name1");
+var catImg = document.getElementById("kitten1");
+var clicks = document.getElementById('count1');
+
+catImg.addEventListener('click', countClicks(), false);
 
 // count user clicks on an image
 function countClicks () {
   // "use strict";
-  this.count += 1;
-  console.log("Click count:", this.count);
+  counter += 1;
+  console.log("Click count:", counter);
+  clicks.textContent = 'Clicks: ' + counter;
 }
-
-// k1.addEventListener('click', countClicks, false);
-// k2.addEventListener('click', countClicks, false);
-
-// var k1 = document.getElementById('kitten1');
-// k1.count = 0;
-
-// k1.name = "Sylvie";
-//
-// var name1 = document.getElementById('name1');
-// name1.innerHTML = "This is " + k1.name;
-//
-// var k2 = document.getElementById('kitten2');
-// k2.count = 0;
-// k2.clicks = document.getElementById('count2');
-// k2.name = "Maurice";
-//
-// var name2 = document.getElementById('name2');
-// name2.innerHTML = "This is " + k2.name;
-//
-
-
