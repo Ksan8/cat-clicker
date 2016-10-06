@@ -124,7 +124,7 @@ var catName = document.getElementById("name1");
 var catImg = document.getElementById("kitten1");
 var clicks = document.getElementById('count1');
 
-catImg.addEventListener('click', countClicks(), false);
+catImg.addEventListener('click', countClicks, false);
 
 // count user clicks on an image
 function countClicks () {
