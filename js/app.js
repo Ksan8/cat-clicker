@@ -44,7 +44,6 @@ var model = {
 var octopus = {
 
   currentCat: model.cats[0],  // set to first cat (initially)
-  totalCats: model.cats.length,
   allCats: model.cats,
 
   init: function() {
@@ -64,18 +63,18 @@ var octopus = {
     view1.render();
   },
 
+  // increments the counter for current cat
   countClicks: function() {
     var counter = octopus.currentCat.clickCount;
-    octopus.currentCat.clickCount += 1;
-    console.log("Click count:", counter);
-    view1.clicks.textContent = 'Clicks: ' + counter;
+    octopus.currentCat.clickCount++;
+    console.log("Click count:", counter + 1);
+    view1.clicks.textContent = 'Clicks: ' + (counter + 1);
   }
-
 };
 
 // current cat display
 var view1 = {
-
+  // store pointers to DOM elements
   catList: document.getElementsByClassName("kitty-link"),  // list of cat names
   catName: document.getElementById("name1"),  // h3 element introducing the cat
   catImg: document.getElementById("kitten1"),  // img element
@@ -87,14 +86,14 @@ var view1 = {
 
   // show a cat
   render: function(){
+    var thisCat = octopus.currentCat;
     // change cat name
-    view1.catName.innerHTML = "This is " + octopus.currentCat.name;
+    view1.catName.innerHTML = "This is " + thisCat.name;
     // change cat photo to selected kitten
-    view1.catImg.src = octopus.currentCat.imgURL;
+    view1.catImg.src = thisCat.imgURL;
     // display # of clicks the image has had
-    view1.clicks.textContent = 'Clicks: ' + octopus.currentCat.clickCount;
+    view1.clicks.textContent = 'Clicks: ' + thisCat.clickCount;
   }
-
 };
 
 // cat list
@@ -111,8 +110,9 @@ var view2 = {
 
   // make list of cats
   listCats: function() {
-    for (i = 0; i < octopus.totalCats; i++) {
-      var name = octopus.allCats[i].name;
+    var cats = octopus.allCats;
+    for (i = 0; i < cats.length; i++) {
+      var name = cats[i].name;
       var newItem = document.createElement("li");
       newItem.classList.add("kitty-link");
       // make it a link
