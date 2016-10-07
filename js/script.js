@@ -56,7 +56,7 @@ var kittenCount = allKittens.length;
 // create an ordered list of kitten names
 function listKittens () {
   // iterate through the kittens
-  for  (i = 0; i < kittenCount; i++) {
+  for (i = 0; i < kittenCount; i++) {
     var cat = allKittens[i];
     var name = cat.name;
     // create list item
@@ -88,8 +88,6 @@ function clickListener () {
       var link = catList[i];
       var name = catArray[i];
       var photo = catPhotos[i];
-      var num = i + 1;
-      var count = 0;  // need to change
 
       // add click functionality (with proper use of closures)
       link.addEventListener('click', (function(nameCopy, photoCopy) {
