@@ -53,19 +53,20 @@ var octopus = {
     view1.catImg.addEventListener('click', octopus.countClicks, false);
   },
 
+  // is this necessary?
   retrieveCats: function() {
     return model.cats;
   },
 
   // show chosen kitten as main image
-  replaceKitten: function(i, name, photo, count) {
+  replaceKitten: function(i) {
     octopus.currentCat = model.cats[i];
     view1.render();
   },
 
-  // TODO: need to change/use counter
   countClicks: function() {
-    counter += 1;
+    var counter = octopus.currentCat.clickCount;
+    octopus.currentCat.clickCount += 1;
     console.log("Click count:", counter);
     view1.clicks.textContent = 'Clicks: ' + counter;
   }
@@ -92,37 +93,12 @@ var view1 = {
     view1.catImg.src = octopus.currentCat.imgURL;
     // display # of clicks the image has had
     view1.clicks.textContent = 'Clicks: ' + octopus.currentCat.clickCount;
-  },
-
-  // count clicks on main image
-  countClicks: function() {
-
-  },
-
-  // listen for a click on list items
-  clickListener: function() {
-    var listCount = catList.length;
-    // iterate through list
-    for  (i = 0; i < listCount; i++) {
-      var link = catList[i];
-      var name = octopus.allCats[i].name;
-      var photo = octopus.allCats[i].imgURL;
-      var count = octopus.allCats[i].clickCount;  // need to change
-
-      // add click functionality (with proper use of closures)
-      link.addEventListener('click', (function(iCopy, nameCopy, photoCopy, countCopy) {
-        return function() {
-          octopus.replaceKitten(iCopy, nameCopy, photoCopy, countCopy);
-        };
-      })(i, name, photo, count));
-    }
   }
 
 };
 
 // cat list
 var view2 = {
-  // totalCats: octopus.totalCats,
 
   init: function() {
     view2.render();
@@ -130,6 +106,7 @@ var view2 = {
 
   render: function(){
     view2.listCats();
+    view2.clickListener();
   },
 
   // make list of cats
@@ -148,6 +125,23 @@ var view2 = {
       // add to cat list
       var list = document.getElementById("kitty-list");
       list.appendChild(newItem);
+    }
+  },
+
+  // listen for a click on list items
+  clickListener: function() {
+    var catList = document.getElementsByClassName("kitty-link");
+    var listCount = view1.catList.length;
+    // iterate through list
+    for  (i = 0; i < listCount; i++) {
+      var link = catList[i];
+      // add click functionality (with proper use of closures)
+      link.addEventListener('click', (function(iCopy) {
+        return function() {
+          console.log("Click heard");
+          octopus.replaceKitten(iCopy);
+        };
+      })(i));
     }
   }
 
