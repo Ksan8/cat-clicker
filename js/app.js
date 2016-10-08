@@ -1,5 +1,5 @@
 var model = {
-
+  // why does this need to be in the model instead of octopus?
   adminShowing: false,
 
   cats : [
@@ -52,7 +52,8 @@ var octopus = {
   init: function() {
     view1.init();
     view2.init();
-    view1.catImg.addEventListener('click', octopus.countClicks, false);
+    view1.catImg.addEventListener('click', this.countClicks, false);
+    view1.admin.addEventListener('click', view1.showAdmin, false);
   },
 
   // is this necessary?
@@ -62,7 +63,7 @@ var octopus = {
 
   // show chosen kitten as main image
   replaceKitten: function(i) {
-    octopus.currentCat = model.cats[i];
+    this.currentCat = model.cats[i];
     view1.render();
   },
 
@@ -82,24 +83,35 @@ var view1 = {
   catName: document.getElementById("name1"),  // h3 element introducing the cat
   catImg: document.getElementById("kitten1"),  // img element
   clicks: document.getElementById('count1'),  // h4 element with # clicks
+  // specific to admin functionality
+  admin: document.getElementById('admin'),  // admin button
+  adminForm: document.getElementById('admin-form'),  // normally hidden form
+  newName: document.getElementById('new-name'),  // input name
+  newURL: document.getElementById('new-url'),  // input url
+  newCount: document.getElementById('new-count'),  // input count
 
   init: function() {
-    view1.render();
+    this.render();
+    this.hideAdmin();
   },
 
   // show a cat
   render: function() {
     var thisCat = octopus.currentCat;
     // change cat name
-    view1.catName.innerHTML = "This is " + thisCat.name;
+    this.catName.innerHTML = "This is " + thisCat.name;
     // change cat photo to selected kitten
-    view1.catImg.src = thisCat.imgURL;
+    this.catImg.src = thisCat.imgURL;
     // display # of clicks the image has had
-    view1.clicks.textContent = 'Clicks: ' + thisCat.clickCount;
+    this.clicks.textContent = 'Clicks: ' + thisCat.clickCount;
   },
 
   showAdmin: function() {
+    view1.adminForm.classList.remove("hidden");
+  },
 
+  hideAdmin: function() {
+    view1.adminForm.classList.add("hidden");
   }
 
 };
@@ -108,12 +120,12 @@ var view1 = {
 var view2 = {
 
   init: function() {
-    view2.render();
+    this.render();
   },
 
   render: function(){
-    view2.listCats();
-    view2.clickListener();
+    this.listCats();
+    this.clickListener();
   },
 
   // make list of cats
