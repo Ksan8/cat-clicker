@@ -54,7 +54,7 @@ var octopus = {
     view2.init();
     view1.catImg.addEventListener('click', this.countClicks, false);
     view1.admin.addEventListener('click', view1.showAdmin, false);
-    view1.submit.addEventListener('click', view1.submitForm, false);
+    view1.submit.addEventListener('click', octopus.modifyKitten, false);
     view1.cancel.addEventListener('click', view1.cancelForm, false);
   },
 
@@ -66,6 +66,21 @@ var octopus = {
   // show chosen kitten as main image
   replaceKitten: function(i) {
     this.currentCat = model.cats[i];
+    view1.render();
+  },
+
+  // re-render kitten with updates
+  modifyKitten: function() {
+    console.log("modifyKitten called");
+    var name = view1.newName;
+    var url = view1.newURL;
+    var count = view1.newCount;
+    if (name.length > 1)
+      this.currentCat.name = name;
+    if (url.length > 1)
+      this.currentCat.imgURL = url;
+    if (name.length > 1)
+      this.currentCat.clickCount = count;
     view1.render();
   },
 
@@ -110,20 +125,19 @@ var view1 = {
     this.clicks.textContent = 'Clicks: ' + thisCat.clickCount;
   },
 
+  // show the form to modify the kitten (as admin)
   showAdmin: function() {
     view1.adminForm.classList.remove("hidden");
   },
 
+  // hide the form
   hideAdmin: function() {
     view1.adminForm.classList.add("hidden");
   },
 
-  submitForm: function() {
-    // submit all the info & re-render kitten with updates
-  },
-
+  // cancel & hide the form
   cancelForm: function() {
-    // delete all info (anything special needed?)
+    console.log("cancelForm called");
     view1.hideAdmin();
   }
 
