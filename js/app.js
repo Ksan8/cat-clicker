@@ -53,9 +53,6 @@ var octopus = {
     view1.init();
     view2.init();
     view1.catImg.addEventListener('click', this.countClicks, false);
-    view1.admin.addEventListener('click', view1.showAdmin, false);
-    view1.submit.addEventListener('click', octopus.modifyKitten, false);
-    view1.cancel.addEventListener('click', view1.cancelForm, false);
   },
 
   // is this necessary?
@@ -72,16 +69,50 @@ var octopus = {
   // re-render kitten with updates
   modifyKitten: function() {
     console.log("modifyKitten called");
-    var name = view1.newName;
-    var url = view1.newURL;
-    var count = view1.newCount;
-    if (name.length > 1)
-      this.currentCat.name = name;
-    if (url.length > 1)
-      this.currentCat.imgURL = url;
-    if (name.length > 1)
-      this.currentCat.clickCount = count;
+    var newName = document.getElementById('new-name').value;  // input name
+    var newURL = document.getElementById('new-url').value;  // input url
+    var newCount = document.getElementById('new-count').value;  // input count
+
+    // change cat name
+    var changeName = function() {
+      if (newName.length > 1) {
+        octopus.currentCat.name = newName;
+        // view1.catName.innerHTML = "This is " + newName;
+      } else {
+        console.log("No new name chosen.");
+      }
+    };
+
+    // change cat url
+    var changeURL = function() {
+      if (newURL.length > 5) {
+        octopus.currentCat.imgURL = newURL;
+        // view1.catImg.src = newURL;
+      } else {
+        console.log("No new image chosen.");
+      }
+    };
+
+    // change cat click count
+    var changeCount = function() {
+      if (newCount.length > 0) {
+        octopus.currentCat.clickCount = newCount;
+        // view1.clicks.textContent = 'Clicks: ' + newCount;
+      } else {
+        console.log("No new count chosen.");
+      }
+    };
+
+    changeName();
+    changeURL();
+    changeCount();
+
+    console.log("New name: " + octopus.currentCat.name);
+    console.log("New url: " + octopus.currentCat.imgURL);
+    console.log("New count: " + octopus.currentCat.clickCount);
+
     view1.render();
+    // view1.hideAdmin();
   },
 
   // increments the counter for current cat
@@ -103,20 +134,24 @@ var view1 = {
   // specific to admin functionality
   admin: document.getElementById('admin'),  // admin button
   adminForm: document.getElementById('admin-form'),  // normally hidden form
-  newName: document.getElementById('new-name'),  // input name
-  newURL: document.getElementById('new-url'),  // input url
-  newCount: document.getElementById('new-count'),  // input count
   submit: document.getElementById('submit'),  // submit button
   cancel: document.getElementById('cancel'),  // cancel button
 
   init: function() {
     this.render();
     this.hideAdmin();
+    this.admin.addEventListener('click', this.showAdmin, false);
+    this.submit.addEventListener('click', octopus.modifyKitten, false);
+    this.cancel.addEventListener('click', this.cancelForm, false);
   },
 
   // show a cat
   render: function() {
+    console.log("Render called");
     var thisCat = octopus.currentCat;
+    console.log("This cat name: " + thisCat.name);
+    console.log("This cat url: " + thisCat.imgURL);
+    console.log("This cat count: " + thisCat.clickCount);
     // change cat name
     this.catName.innerHTML = "This is " + thisCat.name;
     // change cat photo to selected kitten
@@ -191,7 +226,6 @@ var view2 = {
       })(i));
     }
   }
-
 
 };
 
