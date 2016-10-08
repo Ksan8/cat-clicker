@@ -1,5 +1,7 @@
 var model = {
 
+  adminShowing: false,
+
   cats : [
     {
       name : "Sylvie",
@@ -45,6 +47,7 @@ var octopus = {
 
   currentCat: model.cats[0],  // set to first cat (initially)
   allCats: model.cats,
+  admin: model.adminShowing,
 
   init: function() {
     view1.init();
@@ -85,7 +88,7 @@ var view1 = {
   },
 
   // show a cat
-  render: function(){
+  render: function() {
     var thisCat = octopus.currentCat;
     // change cat name
     view1.catName.innerHTML = "This is " + thisCat.name;
@@ -93,7 +96,12 @@ var view1 = {
     view1.catImg.src = thisCat.imgURL;
     // display # of clicks the image has had
     view1.clicks.textContent = 'Clicks: ' + thisCat.clickCount;
+  },
+
+  showAdmin: function() {
+
   }
+
 };
 
 // cat list

@@ -16,11 +16,40 @@
 
     <div class="cat-box">
       <div class="kitten-text">
-        <h3 id="name1">This is Sylvie</h3>
-        <h4 id="count1">Clicks: 0</h4>
+        <h3 id="name1"></h3>
+        <h4 id="count1"></h4>
       </div>
       <div id="cat-img" class="cat-image">
-        <img id="kitten1" class="kitten" src="img/kitten-1-med.jpg" alt="cute kitten">
+        <img id="kitten1" class="kitten" src="" alt="cute kitten">
+      </div>
+      <div>
+        <button id="admin">Admin</button>
+      </div>
+      <div>
+        <!-- need to check all this -->
+        <!-- <form class="hidden" action=""> -->
+        <form action="">
+          <fieldset>
+            <legend>Change the cat's qualities</legend>
+            <div class="input-box">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="input_name">
+            </div>
+            <div class="input-box">
+              <label for="imgURL">Image URL:</label>
+              <!-- should this be text or url? -->
+              <input type="url" id="url" name="input_url">
+            </div>
+            <div class="input-box">
+              <label for="clickCount">Click count:</label>
+              <input type="text" id="clicks" name="input_clicks">
+            </div>
+          </fieldset>
+          <div>
+            <button id="submit">Submit</button>
+            <button id="cancel">Cancel</button>
+          </div>
+        </form>
       </div>
     </div>
 
