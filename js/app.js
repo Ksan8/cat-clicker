@@ -54,6 +54,8 @@ var octopus = {
     view2.init();
     view1.catImg.addEventListener('click', this.countClicks, false);
     view1.admin.addEventListener('click', view1.showAdmin, false);
+    view1.submit.addEventListener('click', view1.submitForm, false);
+    view1.cancel.addEventListener('click', view1.cancelForm, false);
   },
 
   // is this necessary?
@@ -89,6 +91,8 @@ var view1 = {
   newName: document.getElementById('new-name'),  // input name
   newURL: document.getElementById('new-url'),  // input url
   newCount: document.getElementById('new-count'),  // input count
+  submit: document.getElementById('submit'),  // submit button
+  cancel: document.getElementById('cancel'),  // cancel button
 
   init: function() {
     this.render();
@@ -112,6 +116,15 @@ var view1 = {
 
   hideAdmin: function() {
     view1.adminForm.classList.add("hidden");
+  },
+
+  submitForm: function() {
+    // submit all the info & re-render kitten with updates
+  },
+
+  cancelForm: function() {
+    // delete all info (anything special needed?)
+    view1.hideAdmin();
   }
 
 };

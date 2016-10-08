@@ -42,6 +42,39 @@ h3 {
   margin: auto;
 }
 
+button {
+   padding: 5px;
+   margin-top: 18px;
+   margin-right: 10px;
+}
+
+form {
+   float:right;
+}
+
+.input-box {
+   margin-bottom: 10px;
+}
+
+fieldset {
+  padding: 10px;
+}
+
+legend {
+  font-weight: bold;
+  font-style: italic;
+}
+
+label {
+  font-size: 14px;
+}
+
+input {
+   float: right;
+   clear: both;
+   margin-left: 10px;
+}
+
 .hidden {
   visibility: hidden;
 }
