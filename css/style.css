@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  background-image: url(../img/symphony.png);
   margin: 0 auto;
   padding: 0;
   max-width: 800px;
