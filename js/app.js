@@ -74,7 +74,7 @@ var octopus = {
     var newCount = document.getElementById('new-count').value;  // input count
 
     // change cat name
-    var changeName = function() {
+    var changeName = function(event) {
       if (newName.length > 1) {
         octopus.currentCat.name = newName;
         // view1.catName.innerHTML = "This is " + newName;
@@ -111,8 +111,10 @@ var octopus = {
     console.log("New url: " + octopus.currentCat.imgURL);
     console.log("New count: " + octopus.currentCat.clickCount);
 
+    // prevent default render associated with submitting a form
+    event.preventDefault();
     view1.render();
-    // view1.hideAdmin();
+    view1.hideAdmin();
   },
 
   // increments the counter for current cat
