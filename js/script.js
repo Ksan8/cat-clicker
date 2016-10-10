@@ -1,3 +1,6 @@
+// NOTE: This is the old code, not organized with a MV* framework
+// new code is at js/app.js
+
 var catArray = [
   "Sylvie",
   "Maurice",
