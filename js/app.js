@@ -144,7 +144,7 @@ var view1 = {
     this.hideAdmin();
     this.admin.addEventListener('click', this.showAdmin, false);
     this.submit.addEventListener('click', octopus.modifyKitten, false);
-    this.cancel.addEventListener('click', this.cancelForm, false);
+    this.cancel.addEventListener('click', this.hideAdmin, false);
   },
 
   // show a cat
@@ -170,12 +170,6 @@ var view1 = {
   // hide the form
   hideAdmin: function() {
     view1.adminForm.classList.add("hidden");
-  },
-
-  // cancel & hide the form
-  cancelForm: function() {
-    console.log("cancelForm called");
-    view1.hideAdmin();
   }
 
 };
@@ -195,7 +189,7 @@ var view2 = {
   // make list of cats
   listCats: function() {
     var cats = octopus.allCats;
-    for (i = 0; i < cats.length; i++) {
+    for (var i = 0; i < cats.length; i++) {
       var name = cats[i].name;
       var newItem = document.createElement("li");
       newItem.classList.add("kitty-link");
@@ -209,6 +203,8 @@ var view2 = {
       // add to cat list
       var list = document.getElementById("kitty-list");
       list.appendChild(newItem);
+
+      clickListener(newItem, i);
     }
   },
 
@@ -216,17 +212,12 @@ var view2 = {
   clickListener: function() {
     var catList = document.getElementsByClassName("kitty-link");
     var listCount = view1.catList.length;
-    // iterate through list
-    for  (i = 0; i < listCount; i++) {
-      var link = catList[i];
-      // add click functionality (with proper use of closures)
-      link.addEventListener('click', (function(iCopy) {
-        return function() {
-          console.log("Click heard");
-          octopus.replaceKitten(iCopy);
-        };
-      })(i));
-    }
+    // add click functionality (with proper use of closures)
+    link.addEventListener('click', (function(link, i) {
+        console.log("Click heard");
+        octopus.replaceKitten(i);
+      })
+    );
   }
 
 };
