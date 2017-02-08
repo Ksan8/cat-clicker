@@ -1,6 +1,7 @@
 ![KittyClicker](/kitty-clicker.png)
 
 ## Cat-clicker project
+This was completed early in [Udacity](https://www.udacity.com/)'s  [Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001?v=fe1) program.
 
 In this project a web app was built from scratch during an interative process, integrating more and more complex functionality with each version.
 
